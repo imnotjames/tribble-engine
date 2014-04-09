@@ -73,11 +73,15 @@ public class Engine {
 	public void addSystem(EngineSystem engineSystem) {
 		this.engineSystems.add(engineSystem);
 
+		engineSystem.setUp(this);
+
 		// this.engineSystems.sort();
 	}
 
 	public void removeSystem(EngineSystem engineSystem) {
-		this.engineSystems.remove(engineSystem);
+		if (this.engineSystems.remove(engineSystem)) {
+			engineSystem.tearDown(this);
+		}
 	}
 
 	public void addEventListener(EngineEventListener listener) {
