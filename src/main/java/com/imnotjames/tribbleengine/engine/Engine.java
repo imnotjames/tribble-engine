@@ -1,7 +1,7 @@
-package com.notjames.tribbleengine.engine;
+package com.imnotjames.tribbleengine.engine;
 
-import com.notjames.tribbleengine.Family;
-import com.notjames.tribbleengine.entity.Entity;
+import com.imnotjames.tribbleengine.Family;
+import com.imnotjames.tribbleengine.entity.Entity;
 
 import java.util.ArrayList;
 import java.util.List;

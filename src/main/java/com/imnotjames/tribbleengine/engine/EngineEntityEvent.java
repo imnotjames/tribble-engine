@@ -1,6 +1,6 @@
-package com.notjames.tribbleengine.engine;
+package com.imnotjames.tribbleengine.engine;
 
-import com.notjames.tribbleengine.entity.Entity;
+import com.imnotjames.tribbleengine.entity.Entity;
 
 import java.util.EventObject;
 

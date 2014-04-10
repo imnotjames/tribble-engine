@@ -1,4 +1,4 @@
-package com.notjames.tribbleengine.engine;
+package com.imnotjames.tribbleengine.engine;
 
 import java.util.EventListener;
 

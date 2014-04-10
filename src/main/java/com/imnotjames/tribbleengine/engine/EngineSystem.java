@@ -1,4 +1,4 @@
-package com.notjames.tribbleengine.engine;
+package com.imnotjames.tribbleengine.engine;
 
 public interface EngineSystem {
 	public void setUp(Engine engine);
