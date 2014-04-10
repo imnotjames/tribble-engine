@@ -3,6 +3,8 @@ package com.imnotjames.tribbleengine.engine;
 import com.imnotjames.tribbleengine.Family;
 import com.imnotjames.tribbleengine.engine.events.EngineEntityEvent;
 import com.imnotjames.tribbleengine.engine.events.EngineEntityEventListener;
+import com.imnotjames.tribbleengine.engine.events.EngineSystemEvent;
+import com.imnotjames.tribbleengine.engine.events.EngineSystemEventListener;
 import com.imnotjames.tribbleengine.entity.Entity;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class Engine {
 	private List<EngineSystem> engineSystems;
 
 	private List<EngineEntityEventListener> engineEntityEventListeners = new ArrayList<EngineEntityEventListener>();
+	private List<EngineSystemEventListener> engineSystemEventListeners = new ArrayList<EngineSystemEventListener>();
 
 	public Engine() {
 		this.entities = new ArrayList<Entity>();
@@ -82,11 +85,23 @@ public class Engine {
 		engineSystem.setUp(this);
 
 		// this.engineSystems.sort();
+
+		EngineSystemEvent event = new EngineSystemEvent(this, engineSystem);
+
+		for (EngineSystemEventListener listener : this.engineSystemEventListeners) {
+			listener.systemAdded(event);
+		}
 	}
 
 	public void removeSystem(EngineSystem engineSystem) {
 		if (this.engineSystems.remove(engineSystem)) {
 			engineSystem.tearDown(this);
+
+			EngineSystemEvent event = new EngineSystemEvent(this, engineSystem);
+
+			for (EngineSystemEventListener listener : this.engineSystemEventListeners) {
+				listener.systemRemoved(event);
+			}
 		}
 	}
 
@@ -96,5 +111,13 @@ public class Engine {
 
 	public void removeEngineEntityEventListener(EngineEntityEventListener listener) {
 		this.engineEntityEventListeners.remove(listener);
+	}
+
+	public void addEngineSystemEventListener(EngineSystemEventListener listener) {
+		this.engineSystemEventListeners.add(listener);
+	}
+
+	public void removeEngineSystemEventListener(EngineSystemEventListener listener) {
+		this.engineSystemEventListeners.remove(listener);
 	}
 }
