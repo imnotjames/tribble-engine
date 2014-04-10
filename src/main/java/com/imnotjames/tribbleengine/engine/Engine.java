@@ -60,6 +60,10 @@ public class Engine {
 	}
 
 	public List<Entity> getEntities(Family family) {
+		if (family == null) {
+			return this.entities;
+		}
+
 		List<Entity> filteredEntities = new ArrayList<Entity>();
 
 		for (Entity entity : this.entities) {
