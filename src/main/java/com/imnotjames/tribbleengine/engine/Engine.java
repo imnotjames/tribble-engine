@@ -48,6 +48,13 @@ public class Engine {
 		}
 	}
 
+	public void removeAllEntities() {
+		while (this.entities.size() > 0) {
+			this.removeEntity(this.entities.get(0));
+		}
+	}
+
+
 	public List<Entity> getEntities() {
 		return this.entities;
 	}
@@ -62,12 +69,6 @@ public class Engine {
 		}
 
 		return filteredEntities;
-	}
-
-	public void removeAllEntities() {
-		while (this.entities.size() > 0) {
-			this.removeEntity(this.entities.get(0));
-		}
 	}
 
 	public void addSystem(EngineSystem engineSystem) {
