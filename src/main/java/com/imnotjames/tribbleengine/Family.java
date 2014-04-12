@@ -38,6 +38,10 @@ public class Family {
 		return (other.componentTypes).containsAll(this.componentTypes);
 	}
 
+	public boolean hasComponentType(Class<? extends Component> componentType) {
+		return this.componentTypes.contains(componentType);
+	}
+
 	public boolean equals(Object object) {
 		if (!(object instanceof Family)) {
 			return false;
