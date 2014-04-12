@@ -44,6 +44,10 @@ public class Entity {
 	}
 
 	public boolean hasComponent(Component component) {
-		return false;
+		return this.hasComponent(component.getClass());
+	}
+
+	public boolean hasComponent(Class<? extends Component> componentType) {
+		return this.family.hasComponentType(componentType);
 	}
 }
