@@ -8,9 +8,17 @@ import com.imnotjames.tribbleengine.engine.events.EngineSystemEventListener;
 import com.imnotjames.tribbleengine.entity.Entity;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Engine {
+	private static Comparator<EngineSystem> engineSystemPriorityComparator = new Comparator<EngineSystem>() {
+		@Override
+		public int compare(EngineSystem a, EngineSystem b) {
+			return b.getPriority() - a.getPriority();
+		}
+	};
+
 	private List<Entity> entities;
 
 	private List<EngineSystem> engineSystems;
@@ -84,7 +92,7 @@ public class Engine {
 
 		engineSystem.setUp(this);
 
-		// this.engineSystems.sort();
+		this.engineSystems.sort(Engine.engineSystemPriorityComparator);
 
 		EngineSystemEvent event = new EngineSystemEvent(this, engineSystem);
 
