@@ -34,6 +34,10 @@ public class Entity {
 			return;
 		}
 
+		if (this.hasComponent(component)) {
+			throw new IllegalArgumentException("Entity already has component of type " + component.getClass());
+		}
+
 		this.components.add(component);
 
 		this.family.addComponentType(component.getClass());
