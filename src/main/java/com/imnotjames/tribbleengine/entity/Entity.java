@@ -47,6 +47,16 @@ public class Entity {
 		return this.components.toArray(new Component[this.components.size()]);
 	}
 
+	public Component getComponent(Class<? extends Component> componentType) {
+		for (Component component : this.components) {
+			if (component.getClass() == componentType) {
+				return component;
+			}
+		}
+
+		return null;
+	}
+
 	public boolean hasComponent(Component component) {
 		return this.hasComponent(component.getClass());
 	}
