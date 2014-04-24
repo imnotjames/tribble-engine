@@ -87,7 +87,7 @@ public class Engine {
 		return filteredEntities;
 	}
 
-	public void addSystem(EngineSystem engineSystem) {
+	public void addEngineSystem(EngineSystem engineSystem) {
 		this.engineSystems.add(engineSystem);
 
 		engineSystem.setUp(this);
@@ -101,7 +101,7 @@ public class Engine {
 		}
 	}
 
-	public void removeSystem(EngineSystem engineSystem) {
+	public void removeEngineSystem(EngineSystem engineSystem) {
 		if (this.engineSystems.remove(engineSystem)) {
 			engineSystem.tearDown(this);
 
