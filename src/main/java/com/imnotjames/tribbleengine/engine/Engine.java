@@ -60,7 +60,7 @@ public class Engine {
 		}
 	}
 
-	public void removeAllEntities() {
+	public void removeEntities() {
 		while (this.entities.size() > 0) {
 			this.removeEntity(this.entities.get(0));
 		}
