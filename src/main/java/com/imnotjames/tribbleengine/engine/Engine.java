@@ -87,6 +87,10 @@ public class Engine {
 		return filteredEntities;
 	}
 
+	public List<EngineSystem> getEngineSystems() {
+		return this.engineSystems;
+	}
+
 	public void addEngineSystem(EngineSystem engineSystem) {
 		this.engineSystems.add(engineSystem);
 
@@ -110,6 +114,12 @@ public class Engine {
 			for (EngineSystemEventListener listener : this.engineSystemEventListeners) {
 				listener.systemRemoved(event);
 			}
+		}
+	}
+
+	public void removeEngineSystems() {
+		while (this.engineSystems.size() > 0) {
+			this.removeEngineSystem(this.engineSystems.get(0));
 		}
 	}
 
