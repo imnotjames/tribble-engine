@@ -22,6 +22,14 @@ public class Family {
 		this.componentTypes.add(componentType);
 	}
 
+	public boolean removeComponentType(Class<? extends Component> componentType) {
+		return this.componentTypes.remove(componentType);
+	}
+
+	public void removeComponentTypes() {
+		this.componentTypes.clear();
+	}
+
 	public boolean matches(Entity entity) {
 		if (this.componentTypes.size() == 0) {
 			return true;

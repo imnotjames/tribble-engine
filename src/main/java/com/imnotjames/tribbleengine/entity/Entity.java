@@ -64,4 +64,25 @@ public class Entity {
 	public boolean hasComponent(Class<? extends Component> componentType) {
 		return this.family.hasComponentType(componentType);
 	}
+
+	public boolean removeComponent(Component component) {
+		return this.removeComponent(component.getClass());
+	}
+
+	public boolean removeComponent(Class<? extends Component> componentType) {
+		for (Component component : this.components) {
+			if (component.getClass().equals(componentType)) {
+				this.components.remove(component);
+				this.family.removeComponentType(componentType);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public void removeComponents() {
+		this.family.removeComponentTypes();
+		this.components.clear();
+	}
 }
