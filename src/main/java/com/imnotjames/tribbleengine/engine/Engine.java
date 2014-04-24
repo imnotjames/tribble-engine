@@ -32,6 +32,10 @@ public class Engine {
 	}
 
 	public void update(long delta) {
+		if (delta <= 0) {
+			throw new IllegalArgumentException("Update delta must be greater than 0");
+		}
+
 		for (EngineSystem s : engineSystems) {
 			s.update(delta);
 		}
