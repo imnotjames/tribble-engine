@@ -70,6 +70,13 @@ public class Engine {
 		}
 	}
 
+	public void removeEntities(Family family) {
+		List<Entity> entities = this.getEntities(family);
+
+		for (Entity entity : entities) {
+			this.removeEntity(entity);
+		}
+	}
 
 	public List<Entity> getEntities() {
 		return this.entities;
