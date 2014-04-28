@@ -47,10 +47,10 @@ public class Entity {
 		return this.components.toArray(new Component[this.components.size()]);
 	}
 
-	public Component getComponent(Class<? extends Component> componentType) {
+	public <T extends Component> T getComponent(Class<T> componentType) {
 		for (Component component : this.components) {
-			if (component.getClass() == componentType) {
-				return component;
+			if (component.getClass().equals(componentType)) {
+				return componentType.cast(component);
 			}
 		}
 
