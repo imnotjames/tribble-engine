@@ -90,7 +90,7 @@ public class Engine {
 		List<Entity> filteredEntities = new ArrayList<Entity>();
 
 		for (Entity entity : this.entities) {
-			if (family.matches(entity)) {
+			if (family.matches(entity.getFamily())) {
 				filteredEntities.add(entity);
 			}
 		}

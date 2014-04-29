@@ -30,12 +30,10 @@ public class Family {
 		this.componentTypes.clear();
 	}
 
-	public boolean matches(Entity entity) {
+	public boolean matches(Family other) {
 		if (this.componentTypes.size() == 0) {
 			return true;
 		}
-
-		Family other = entity.getFamily();
 
 		if (other == null) {
 			return false;
