@@ -7,7 +7,6 @@ import com.imnotjames.tribbleengine.engine.events.EngineSystemEvent;
 import com.imnotjames.tribbleengine.engine.events.EngineSystemEventListener;
 import com.imnotjames.tribbleengine.entity.Component;
 import com.imnotjames.tribbleengine.entity.Entity;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Assert;
