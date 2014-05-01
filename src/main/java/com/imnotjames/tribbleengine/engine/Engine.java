@@ -10,25 +10,28 @@ import com.imnotjames.tribbleengine.entity.Entity;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Collection;
+import java.util.PriorityQueue;
 
 public class Engine {
-	private static Comparator<EngineSystem> engineSystemPriorityComparator = new Comparator<EngineSystem>() {
-		@Override
-		public int compare(EngineSystem a, EngineSystem b) {
-			return b.getPriority() - a.getPriority();
-		}
-	};
-
 	private List<Entity> entities;
 
-	private List<EngineSystem> engineSystems;
+	private Collection<EngineSystem> engineSystems;
 
 	private List<EngineEntityEventListener> engineEntityEventListeners = new ArrayList<EngineEntityEventListener>();
 	private List<EngineSystemEventListener> engineSystemEventListeners = new ArrayList<EngineSystemEventListener>();
 
 	public Engine() {
 		this.entities = new ArrayList<Entity>();
-		this.engineSystems = new ArrayList<EngineSystem>();
+		this.engineSystems = new PriorityQueue<EngineSystem>(
+			10,
+			new Comparator<EngineSystem>() {
+				@Override
+				public int compare(EngineSystem a, EngineSystem b) {
+					return b.getPriority() - a.getPriority();
+				}
+			}
+		);
 	}
 
 	public void update(long delta) {
@@ -98,7 +101,7 @@ public class Engine {
 		return filteredEntities;
 	}
 
-	public List<EngineSystem> getEngineSystems() {
+	public Collection<EngineSystem> getEngineSystems() {
 		return this.engineSystems;
 	}
 
@@ -106,8 +109,6 @@ public class Engine {
 		this.engineSystems.add(engineSystem);
 
 		engineSystem.setUp(this);
-
-		this.engineSystems.sort(Engine.engineSystemPriorityComparator);
 
 		EngineSystemEvent event = new EngineSystemEvent(this, engineSystem);
 
@@ -129,8 +130,10 @@ public class Engine {
 	}
 
 	public void removeEngineSystems() {
-		while (this.engineSystems.size() > 0) {
-			this.removeEngineSystem(this.engineSystems.get(0));
+		EngineSystem[] systems = this.engineSystems.toArray(new EngineSystem[this.engineSystems.size()]);
+
+		for (EngineSystem engineSystem : systems) {
+			this.removeEngineSystem(engineSystem);
 		}
 	}
 
