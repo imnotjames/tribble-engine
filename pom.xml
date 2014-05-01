@@ -6,6 +6,9 @@
 	<artifactId>tribble-engine</artifactId>
 	<version>0.0.1</version>
 	<url>https://github.com/imnotjames/tribble-engine</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<licenses>
 		<license>
 			<name>MIT License</name>
